@@ -14,8 +14,11 @@ class NowPlayingMoviesViewController: UICollectionViewController {
     fileprivate var movies: [Movie] = []
     fileprivate let moviePreviewCellIdentifier = "MoviePreviewCellIdentifier"
     private var isLoading = false
+    fileprivate var originFrame: CGRect = .zero
     
     let cellHeight: CGFloat = 200.0
+    
+    var selectedCell: MoviePreviewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +45,13 @@ class NowPlayingMoviesViewController: UICollectionViewController {
             self.collectionView?.reloadData()
         }
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
 }
 
 // MARK: CollectionView datasource
@@ -63,6 +73,24 @@ extension NowPlayingMoviesViewController {
     }
 }
 
+// MARK: CollectionView delegate
+
+extension NowPlayingMoviesViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let movieVC = storyboard?.instantiateViewController(withIdentifier: "MovieViewController") as? MovieViewController,
+            let cell = collectionView.cellForItem(at: indexPath) as? MoviePreviewCell
+        else {
+            return
+        }
+        let test = self.navigationController as? MoviePreviewNavigationController
+        movieVC.transitioningDelegate = test
+        movieVC.movie = movies[indexPath.row]
+        selectedCell = cell
+        navigationController?.pushViewController(movieVC, animated: true)
+//        present(movieVC, animated: true, completion: nil)
+    }
+}
+
 // MARK: CollectionView Flow Layout delegate
 
 extension NowPlayingMoviesViewController: UICollectionViewDelegateFlowLayout {
@@ -73,3 +101,27 @@ extension NowPlayingMoviesViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 }
+
+// MARK: Detail view controller presenting
+
+//extension NowPlayingMoviesViewController: UIViewControllerTransitioningDelegate {
+//    
+//    func animationController(forPresented presented: UIViewController,
+//                             presenting: UIViewController,
+//                             source: UIViewController)
+//        -> UIViewControllerAnimatedTransitioning?
+//    {
+//        guard let selectedCell = selectedCell else {
+//            return nil
+//        }
+//        return MoviePreviewOpeningAnimator(withDuration: 5.0, forTransitionType: .Presenting, fromCell: selectedCell)
+//    }
+//    
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        guard let selectedCell = selectedCell else {
+//            return nil
+//        }
+//        return MoviePreviewOpeningAnimator(withDuration: 5.0, forTransitionType: .Dismissing, fromCell: selectedCell)
+//    }
+//    
+//}

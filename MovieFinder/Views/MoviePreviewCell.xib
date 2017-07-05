@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,21 +20,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRI-HE-bRc">
-                        <rect key="frame" x="20" y="20" width="437" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="118" y="20" width="339" height="21"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mbi-Od-O9K">
+                        <rect key="frame" x="0.0" y="0.0" width="98" height="163"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Mbi-Od-O9K" secondAttribute="height" multiplier="6:10" id="su8-nm-wRS"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="sRI-HE-bRc" firstAttribute="leading" secondItem="NQJ-3H-9zL" secondAttribute="leading" constant="20" id="9xc-TF-Gg8"/>
+                <constraint firstItem="Mbi-Od-O9K" firstAttribute="top" secondItem="NQJ-3H-9zL" secondAttribute="top" id="VwD-DN-fGW"/>
                 <constraint firstAttribute="trailing" secondItem="sRI-HE-bRc" secondAttribute="trailing" constant="20" id="ZNG-Xb-Acb"/>
+                <constraint firstItem="Mbi-Od-O9K" firstAttribute="leading" secondItem="NQJ-3H-9zL" secondAttribute="leading" id="e1d-j8-P9O"/>
+                <constraint firstAttribute="bottom" secondItem="Mbi-Od-O9K" secondAttribute="bottom" id="eo5-Sz-77w"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sRI-HE-bRc" secondAttribute="bottom" constant="20" id="mfT-wa-8jx"/>
                 <constraint firstItem="sRI-HE-bRc" firstAttribute="top" secondItem="NQJ-3H-9zL" secondAttribute="top" constant="20" id="v7K-Si-i2q"/>
+                <constraint firstItem="sRI-HE-bRc" firstAttribute="leading" secondItem="Mbi-Od-O9K" secondAttribute="trailing" constant="20" id="w9m-jg-bfO"/>
             </constraints>
             <size key="customSize" width="477" height="163"/>
             <connections>
+                <outlet property="imageView" destination="Mbi-Od-O9K" id="KFk-MI-i8T"/>
                 <outlet property="titleLabel" destination="sRI-HE-bRc" id="2um-Wt-80A"/>
             </connections>
             <point key="canvasLocation" x="59.5" y="-106.5"/>

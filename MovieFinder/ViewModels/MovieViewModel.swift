@@ -11,6 +11,7 @@ import Foundation
 struct MoviewViewModel {
     
     let movie: Movie
+    let imagesBasePath: String = "https://image.tmdb.org/t/p/w185/"
     
     init(movie: Movie) {
         self.movie = movie
@@ -18,6 +19,10 @@ struct MoviewViewModel {
     
     var title: String {
         return movie.title
+    }
+    
+    var imageURL: URL? {
+        return URL(string: imagesBasePath+movie.posterPath)
     }
     
 }
