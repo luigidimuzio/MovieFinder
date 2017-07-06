@@ -12,12 +12,14 @@ struct Movie {
     let id: Int
     let title: String
     let posterPath: String
+    let overview: String
     
     init?(dictionary: Dictionary<String, Any>) {
         guard
             let id = dictionary["id"] as? Int,
             let title = dictionary["title"] as? String,
-            let posterPath = dictionary["poster_path"] as? String
+            let posterPath = dictionary["poster_path"] as? String,
+            let overview = dictionary["overview"] as? String
         else {
             return nil
         }
@@ -25,5 +27,6 @@ struct Movie {
         self.title = title
         self.id = id
         self.posterPath = posterPath
+        self.overview = overview
     }
 }

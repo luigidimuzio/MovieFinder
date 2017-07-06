@@ -82,12 +82,9 @@ extension NowPlayingMoviesViewController {
         else {
             return
         }
-        let test = self.navigationController as? MoviePreviewNavigationController
-        movieVC.transitioningDelegate = test
         movieVC.movie = movies[indexPath.row]
         selectedCell = cell
         navigationController?.pushViewController(movieVC, animated: true)
-//        present(movieVC, animated: true, completion: nil)
     }
 }
 
@@ -102,26 +99,3 @@ extension NowPlayingMoviesViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: Detail view controller presenting
-
-//extension NowPlayingMoviesViewController: UIViewControllerTransitioningDelegate {
-//    
-//    func animationController(forPresented presented: UIViewController,
-//                             presenting: UIViewController,
-//                             source: UIViewController)
-//        -> UIViewControllerAnimatedTransitioning?
-//    {
-//        guard let selectedCell = selectedCell else {
-//            return nil
-//        }
-//        return MoviePreviewOpeningAnimator(withDuration: 5.0, forTransitionType: .Presenting, fromCell: selectedCell)
-//    }
-//    
-//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        guard let selectedCell = selectedCell else {
-//            return nil
-//        }
-//        return MoviePreviewOpeningAnimator(withDuration: 5.0, forTransitionType: .Dismissing, fromCell: selectedCell)
-//    }
-//    
-//}

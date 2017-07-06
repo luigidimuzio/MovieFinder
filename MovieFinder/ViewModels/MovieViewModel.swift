@@ -25,4 +25,8 @@ struct MoviewViewModel {
         return URL(string: imagesBasePath+movie.posterPath)
     }
     
+    var overview: String {
+        return movie.overview
+    }
+    
 }

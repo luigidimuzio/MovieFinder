@@ -101,11 +101,6 @@ class MoviePreviewOpeningAnimator: NSObject, UIViewControllerAnimatedTransitioni
     
 }
 
-//
-//} else {
-//    containerView.insertSubview(toView, belowSubview: fromView)
-//}
-
 
 extension UIView {
     var screenshot: UIImage {
